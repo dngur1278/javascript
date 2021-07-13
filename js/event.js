@@ -27,23 +27,33 @@ console.log(obj['hobby'][1]);
 console.log(obj.pet[0].dog);
 console.log(obj.pet[1].cat);
 
+let fruits = ['Apple', 'Orange', 'Mango', 'Melon'];
+
+function addFruit() {
+    let addVal = document.getElementById('add').value;
+    fruits[fruits.length] = addVal;
+    document.getElementById('add').value = null;
+    removeFromDoc();
+    createElements();
+}
+
+
 // 요소를 생성.
-function createElements() {
-    let fruits = ['Apple', 'Orange', 'Mango', 'Melon'];
-    let ulTag = document.getElementsByTagName('ul');
+function createElements(e) {
+    // let ulTag = document.getElementsByTagName('ul');
+    let ulTag = document.createElement('ul');
+    ulTag.setAttribute('id', 'fruit');
     for (let fruit of fruits) {
         let liTag = document.createElement('li');
         liTag.appendChild(document.createTextNode(fruit));
-        ulTag[0].appendChild(liTag);
+        ulTag.appendChild(liTag);
+    }
+
+    document.body.appendChild(ulTag);
+}
+
+function removeFromDoc() {
+    if(document.getElementById('fruit')){
+        document.getElementById('fruit').remove(); // <ul id='fruit'></ul> 지움 
     }
 }
-// let ulTag = document.getElementsByTagName('ul');    // document의 li태그 찾기
-// let liTag = document.createElement('li');   // <li>Apple</li>
-// let apple = document.createTextNode('Apple');
-// liTag.appendChild(apple);
-// ulTag[0].appendChild(liTag);
-
-// liTag = document.createElement('li');
-// let orange = document.createTextNode('Orange');
-// liTag.appendChild(orange);
-// ulTag[0].appendChild(liTag);
